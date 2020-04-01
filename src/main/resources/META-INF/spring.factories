@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.fire.passport.config.CustomAuthenticationConfiguration,\
+  com.fire.passport.config.CasUserDataSourceConfig

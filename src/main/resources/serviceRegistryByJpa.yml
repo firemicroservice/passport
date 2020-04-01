@@ -1,0 +1,9 @@
+cas:
+  serviceRegistry: # Service Registry(服务注册)
+    initFromJson: true #开启识别Json文件，默认false
+    #watcherEnabled: true #自动扫描服务配置，默认开启
+    schedule:
+      repeatInterval: 120000 #120秒扫描一遍
+      startDelay: 15000 #延迟15秒开启
+    json: # Json配置
+      location: classpath:/services

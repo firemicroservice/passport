@@ -1,0 +1,81 @@
+cas:
+  theme:
+    defaultThemeName: fire # 默认主题配置
+  serviceRegistry: # Service Registry(服务注册)
+    initFromJson: false #开启识别Json文件，默认false
+    #watcherEnabled: true #自动扫描服务配置，默认开启
+    schedule:
+      repeatInterval: 120000 #120秒扫描一遍
+      startDelay: 15000 #延迟15秒开启
+    json: # Json配置
+      location: classpath:/services
+    jpa: # Jpa配置
+      user: root
+      password: 123456
+      driverClass: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/cas?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&nullCatalogMeansCurrent=true&autoReconnect=true
+      dialect: org.hibernate.dialect.MySQL5Dialect
+      failFastTimeout: 1
+      healthQuery:
+      isolateInternalQueries: false
+      leakThreshold: 10
+      batchSize: 1
+      ddlAuto: none #设置配置的服务，一直都有，不会给清除掉 ， 第一次使用，需要配置为 create-drop
+        #create-drop 重启cas服务的时候，就会给干掉
+        #create  没有表就创建，有就不创建
+        #none 一直都有
+        #update 更新
+      autocommit: true
+      idleTimeout: 5000
+      pool:
+        suspension: false
+        minSize: 6
+        maxSize: 18
+        maxWait: 2000
+        timeoutMillis: 1000
+#  authn: # CAS Authentication Credentials
+#    accept:
+#      users: casuser::Mellon #使用自定义class则应该保留且会生效但是配置了其他的属性比如服务注册就可以去掉
+#    jdbc: # 使用cas.authn.jdbc模式则cas.authn.accept.users也不可以去掉
+#      query[0]:
+#        sql: select * from user where username = ? #查询账号密码SQL，必须包含密码字段
+#        fieldPassword: password #指定上面的SQL查询字段名（必须）
+#        fieldExpired: expired #指定过期字段，1为过期，若过期不可用
+#        fieldDisabled: disabled #为不可用字段段，1为不可用，需要修改密码
+#        url: jdbc:mysql://localhost:3306/cas?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&nullCatalogMeansCurrent=true&autoReconnect=true #数据库连接
+#        dialect: org.hibernate.dialect.MySQLDialect #数据库dialect配置
+#        user: root #数据库用户名
+#        password: 123456 #数据库用户密码
+#        autocommit: false #数据库事务自动提交
+#        driverClass: com.mysql.jdbc.Driver #数据库驱动
+#        idleTimeout: 5000 #超时配置
+#        passwordEncoder: #默认加密策略，通过encodingAlgorithm来指定算法，默认NONE不加密
+#          type: NONE
+          #characterEncoding: UTF-8
+          #encodingAlgorithm: MD5
+          #secret: #加密盐
+          #strength: 16 #加密字符长度
+
+#在JDBC认证中我们也可以选择配置加密算法，加密算法一般为上面的三种，MD5、SHA、HMAC，
+#加密类型为NONE|DEFAULT|STANDARD|BCRYPT|SCRYPT|PBKDF2这几种，我们在配置文件中选择加密类型，指定加密算法。
+
+
+
+#SSL配置
+server:
+  ssl:
+    enabled: true
+    key-store: classpath:firekeystore
+    key-store-password: firehuo
+    key-password: changeit
+    keyAlias: caskeystore
+
+spring:
+  # 数据源配置
+  datasource:
+    cas:
+      driver-class-name: com.mysql.jdbc.Driver # mysql的驱动你可以配置别的关系型数据库
+      url: jdbc:mysql://localhost:3306/cas?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&nullCatalogMeansCurrent=true&autoReconnect=true
+      username: root # 用户名
+      password: 123456 # 密码
+

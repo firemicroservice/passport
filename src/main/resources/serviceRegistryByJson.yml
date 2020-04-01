@@ -1,0 +1,33 @@
+# 使用cas.authn.jdbc模式则cas.authn.accept.users可以去掉
+# 使用自定义class则应该保留且会生效
+cas:
+  serviceRegistry: # Service Registry(服务注册)
+    initFromJson: false #开启识别Json文件，默认false
+    #watcherEnabled: true #自动扫描服务配置，默认开启
+    schedule:
+      repeatInterval: 120000 #120秒扫描一遍
+      startDelay: 15000 #延迟15秒开启
+    jpa: # Jpa配置
+      user: root
+      password: 123456
+      driverClass: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/cas?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&nullCatalogMeansCurrent=true&autoReconnect=true
+      dialect: org.hibernate.dialect.MySQL5Dialect
+      failFastTimeout: 1
+      healthQuery:
+      isolateInternalQueries: false
+      leakThreshold: 10
+      batchSize: 1
+      ddlAuto: create-drop #设置配置的服务，一直都有，不会给清除掉 ， 第一次使用，需要配置为 create-drop
+        #create-drop 重启cas服务的时候，就会给干掉
+        #create  没有表就创建，有就不创建
+        #none 一直都有
+      #update 更新
+      autocommit: true
+      idleTimeout: 5000
+      pool:
+        suspension: false
+        minSize: 6
+        maxSize: 18
+        maxWait: 2000
+        timeoutMillis: 1000
