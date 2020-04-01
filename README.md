@@ -1,13 +1,6 @@
-CAS Overlay Template
+# 单点登陆
 ============================
-
-Generic CAS WAR overlay to exercise the latest versions of CAS. This overlay could be freely used as a starting template for local CAS war overlays. The CAS services management overlay is available [here](https://github.com/apereo/cas-services-management-overlay).
-
-# Versions
-
-```xml
-<cas.version>5.3.x</cas.version>
-```
+本系统是基于 CAS 5.3.x 开发的  [here](https://github.com/apereo/cas-services-management-overlay).
 
 # Requirements
 
@@ -15,11 +8,11 @@ Generic CAS WAR overlay to exercise the latest versions of CAS. This overlay cou
 
 # Configuration
 
-The `etc` directory contains the configuration files and directories that need to be copied to `/etc/cas/config`.
+`etc`目录包含的配置文件和目录需要复制到`/etc/cas/config`。
 
 # Build
 
-To see what commands are available to the build script, run:
+要查看构建脚本可用的命令，请运行：
 
 ```bash
 ./build.sh help
@@ -42,14 +35,14 @@ To update `SNAPSHOT` versions run:
 - Create a keystore file `thekeystore` under `/etc/cas`. Use the password `changeit` for both the keystore and the key/certificate entries.
 - Ensure the keystore is loaded up with keys and certificates of the server.
 
-On a successful deployment via the following methods, CAS will be available at:
+部署成功后，可以通过以下方法访问CAS：
 
-* `http://cas.server.name:8080/cas`
-* `https://cas.server.name:8443/cas`
+* `http://cas.server.name:8080/`
+* `https://cas.server.name:8443/`
 
 ## Executable WAR
 
-Run the CAS web application as an executable WAR.
+将CAS Web应用程序作为可执行WAR运行。
 
 ```bash
 ./build.sh run
